@@ -4,6 +4,8 @@
 #include<stdlib.h>
 #include<string.h>
 
+//typedef char** HuffmanCode;
+
 typedef struct{
 	int weight;
 	char data;

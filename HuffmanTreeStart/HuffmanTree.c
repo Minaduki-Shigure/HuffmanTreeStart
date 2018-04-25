@@ -80,6 +80,7 @@ HuffmanTree HuffmanTreeInit(void)
 	char *cd;
 	int start;
 	unsigned int c, f;
+	//HuffmanCode Code = (HuffmanCode)malloc((n + 1) * sizeof(char*));
 	cd = (char*)malloc(n * sizeof(char));
 	cd[n - 1] = '\0';
 	for (i = 1; i <= n; i++)
@@ -93,6 +94,8 @@ HuffmanTree HuffmanTreeInit(void)
 				cd[--start] = '1';
 		}
 		strcpy(tree[i].code, &cd[start]);
+		//Code[i] = (char*)malloc((n = start) * sizeof(char));
+		//strcpy(Code[i], &cd[start]);
 	}
 	free(cd);
 	return tree;

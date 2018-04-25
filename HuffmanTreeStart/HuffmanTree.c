@@ -23,10 +23,19 @@ HuffmanTNode* NewNode(void)
 	return newnode;
 }
 
-HuffmanTNode *HuffmanTreeInit(int n)
+HuffmanTNode *HuffmanTreeInit(void)
 {
-	int i, j, m, s1, s2, start;
-	if (n == 1)
-		exit(-1);
+	//int i, j, m, s1, s2, start;
+	int i = 0, n = 0;
+	for (i == 0; i < 128; i++)
+	{
+		if (statistics[i])
+		{
+			n++;
+			HuffmanTNode* node = NewNode();
+			node->data = i;
+			node->weight = statistics[i];
+		}
+	}
 
 }

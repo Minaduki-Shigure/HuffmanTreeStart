@@ -5,10 +5,12 @@
 
 typedef int TElemType;
 
-typedef struct HuffmanTNode{
+typedef struct{
 	int weight;
 	TElemType data;
 	HuffmanTNode *Parent;
 	HuffmanTNode *LeftChild;
 	HuffmanTNode *RightChild;
-}*HuffmanTNode;
+}HuffmanTNode;
+
+int statistics[127] = { 0 };

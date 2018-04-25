@@ -20,3 +20,4 @@ int statistics[127] = { 0 };
 void FileStatistic(FILE *fp);
 void TakeSmallestWeight(HuffmanTree tree, int end, int *s1, int *s2);
 HuffmanTree HuffmanTreeInit(void);
+void EnCode(HuffmanTree tree, FILE *input, FILE *output);

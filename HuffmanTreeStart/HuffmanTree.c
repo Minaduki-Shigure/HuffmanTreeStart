@@ -100,3 +100,16 @@ HuffmanTree HuffmanTreeInit(void)
 	free(cd);
 	return tree;
 }
+
+void EnCode(HuffmanTree tree, FILE *input, FILE *output)
+{
+	char buffer;
+	buffer = fgetc(input);
+	while (buffer != EOF)
+	{
+		fputs(tree[(int)buffer].code, output);
+		buffer = fgetc(input);
+	}
+	fputc(EOF, output);
+	return;
+}

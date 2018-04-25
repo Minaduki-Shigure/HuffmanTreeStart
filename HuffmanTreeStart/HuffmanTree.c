@@ -15,6 +15,11 @@ void FileStatistic(FILE *fp)
 HuffmanTNode* NewNode(void)
 {
 	HuffmanTNode *newnode = (HuffmanTNode*)malloc(sizeof(HuffmanTNode));
+	newnode->data = 0;
+	newnode->weight = 0;
+	newnode->Parent = NULL;
+	newnode->LeftChild = NULL;
+	newnode->RightChild = NULL;
 	return newnode;
 }
 

@@ -1,5 +1,7 @@
 #include"HuffmanTree.h"
 
+int statistics[127] = { 0 };
+
 void FileStatistic(FILE *fp)
 {
 	char buffer;

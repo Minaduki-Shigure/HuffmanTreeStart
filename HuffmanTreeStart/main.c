@@ -8,7 +8,7 @@ int main(void)
 	scanf("%s", output);
 	HuffmanTree tree;
 	FILE *in = fopen(input, "r");
-	FILE *out = fopen(output, "wb");
+	FILE *out = fopen(output, "w");
 	if (in == NULL)
 	{
 		printf("File open process retured with a failure!\n");
@@ -17,6 +17,8 @@ int main(void)
 	}
 	FileStatistic(in);
 	tree = HuffmanTreeInit();
+	for (int j = 0; j < 128; j++)
+		printf("%d %s\n", tree[j].data, tree[j].code);
 	EnCode(tree, in, out);
 	system("pause");
 	return 0;

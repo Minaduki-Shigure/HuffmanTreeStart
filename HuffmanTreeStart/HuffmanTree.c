@@ -1,6 +1,7 @@
 #include"HuffmanTree.h"
 
-int statistics[127] = { 0 };
+int statistics[128] = { 0 };
+int buffer[128] = { 0 };
 
 void FileStatistic(FILE *fp)
 {
@@ -18,19 +19,20 @@ void TakeSmallestWeight(HuffmanTree tree, int end, int *s1, int *s2)
 {
 	*s1 = 1;
 	*s2 = 1;
-	int buffer[127] = { 0 };
 	int i = 0;
 	int a = 1;
 	for (i = 1; i <= end; i++)
-		buffer[i] = tree[i].weight;
-	for (i = 1; i <= end; i++)
 	{
-		if (buffer[i] <= buffer[*s1])
+		if (buffer[*s1] == -1)
+			*s1 = i;
+		else if (buffer[i] <= buffer[*s1] && buffer[i] != -1)
 			*s1 = i;
 	}
 	for (i = 1; i <= end; i++)
 	{
-		if (i != *s1&&buffer[i] <= buffer[*s2])
+		if (buffer[*s2] == -1)
+			*s2 = i;
+		else if (*s1 != i && buffer[i] <= buffer[*s2] && buffer[i] != -1)
 			*s2 = i;
 	}
 	return;
@@ -51,6 +53,11 @@ HuffmanTree HuffmanTreeInit(void)
 	int a = 1;
 	for (i = 0; i < 128; i++)
 	{
+		tree[a].data = 0;
+		tree[a].weight = 0;
+		tree[a].Parent = 0;
+		tree[a].LeftChild = 0;
+		tree[a].RightChild = 0;
 		if (statistics[i])
 		{
 			tree[a].data = i;
@@ -70,6 +77,8 @@ HuffmanTree HuffmanTreeInit(void)
 		tree[i].RightChild = 0;
 	}
 	int s1, s2;
+	for (i = 1; i <= m; i++)
+		buffer[i] = tree[i].weight;
 	for (i = n + 1; i <= m; i++)
 	{
 		TakeSmallestWeight(tree, i - 1, &s1, &s2);
@@ -78,6 +87,7 @@ HuffmanTree HuffmanTreeInit(void)
 		tree[i].LeftChild = s1;
 		tree[i].RightChild = s2;
 		tree[i].weight = tree[s1].weight + tree[s2].weight;
+		buffer[i] = tree[i].weight;
 	}
 	char *cd;
 	int start;
@@ -109,6 +119,7 @@ void EnCode(HuffmanTree tree, FILE *input, FILE *output)
 	buffer = fgetc(input);
 	while (buffer != EOF)
 	{
+		puts(tree[(int)buffer].code);
 		fputs(tree[(int)buffer].code, output);
 		buffer = fgetc(input);
 	}

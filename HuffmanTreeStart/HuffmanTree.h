@@ -1,21 +1,22 @@
 #pragma once
 
 #include<stdio.h>
+#include<malloc.h>
 #include<stdlib.h>
-#include<string.h>
 
-//typedef char** HuffmanCode;
+#define NAMESIZE 500
 
-typedef struct{
-	int weight;
-	char data;
-	int Parent;
-	int LeftChild;
-	int RightChild;
-	char code[10];
-}HuffmanTNode, *HuffmanTree;
+typedef struct {
+	unsigned long weight;
+	int parent, lchild, rchild;
+}HTNode, *HuffmanTree, *HTree;
 
-void FileStatistic(FILE *fp);
-void TakeSmallestWeight(HuffmanTree tree, int end, int *s1, int *s2);
-HuffmanTree HuffmanTreeInit(void);
-void EnCode(HuffmanTree tree, FILE *input, FILE *output);
+typedef char** HuffmanCode;
+
+void StrCopy(char *str, const char *c);
+void WeightSelect(HuffmanTree T, int n, int &l, int &r);
+void HuffmanCoding(HuffmanTree &HT, HuffmanCode &HC, int *w, int n);
+void HuffmanCodeOutput(HuffmanCode C, int* s, int n);
+void Rewin(HuffmanTree &T, char *s, int *x, int n, int &m);
+void EnCode(const char *s);
+void DeCode(const char *s);

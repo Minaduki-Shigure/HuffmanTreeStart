@@ -26,6 +26,9 @@
   <ItemGroup>
     <ClInclude Include="HuffmanTree.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Install.reg" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{E60AA1E6-E614-4E34-B01E-DC266C22D764}</ProjectGuid>

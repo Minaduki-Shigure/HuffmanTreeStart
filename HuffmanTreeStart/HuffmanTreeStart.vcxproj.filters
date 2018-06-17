@@ -30,4 +30,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Install.reg">
+      <Filter>源文件</Filter>
+    </None>
+  </ItemGroup>
 </Project>

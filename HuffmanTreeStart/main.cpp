@@ -3,8 +3,8 @@
 int main(void)
 {
 	char input[NAMESIZE], output[NAMESIZE];
-	printf("Input file:");
-	scanf("%s", input);
+	//printf("Input file:");
+	//scanf("%s", input);
 	printf("Output file:");
 	scanf("%s", output);
 	//EnCode(input);

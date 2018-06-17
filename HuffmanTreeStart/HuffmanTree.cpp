@@ -111,7 +111,7 @@ void HuffmanCodeOutput(HuffmanCode C, int* s, int n)
 	return;
 }
 
-void Rewin(HuffmanTree &T, char *s, int *x, int n, int &m)
+void ReSync(HuffmanTree &T, char *s, int *x, int n, long long int &m)
 {
 	HuffmanTree p = T + 2 * n - 1;
 	m = 0;
@@ -229,9 +229,10 @@ void DeCode(const char *s)
 {
 	printf("Starting to decode!\n");
 	FILE *pr;
-	int a, i = 0, j, n = 256, m = 2 * n - 1;
-	HuffmanTree HT;
-	char DeCodeName[NAMESIZE];
+	static int n = 256;
+	int a, i = 0, j, m = 2 * n - 1;
+	static HuffmanTree HT;
+	static char DeCodeName[NAMESIZE];
 	i = 0;
 	while (s[i] != '.')
 	{
@@ -279,9 +280,9 @@ void DeCode(const char *s)
 		HT[a].parent = i;
 	}
 	HT[m].parent = 0;
-	int gm = 0;
-	char aa[80000], b[8];
-	int x[10000], d;
+	long long int gm = 0;
+	char aa[400000], b[8];
+	int x[50000], d;
 	a = fgetc(pr);
 	while (!feof(pr))
 	{
@@ -315,7 +316,7 @@ void DeCode(const char *s)
 		aa[8 * j - 8 + k] = b[8 - i + k];
 	aa[8 * j - 8 + i] = '0';
 	aa[8 * j - 8 + i + 1] = '#';
-	Rewin(HT, aa, x, n, gm);
+	ReSync(HT, aa, x, n, gm);
 	FILE *fw;
 	fw = fopen(DeCodeName, "wb");
 	for (i = 0; i < gm; i++)

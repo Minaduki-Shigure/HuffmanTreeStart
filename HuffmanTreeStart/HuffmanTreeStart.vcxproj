@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HuffmanTree.cpp" />
+    <ClCompile Include="HTDecode.cpp" />
+    <ClCompile Include="HTEncode.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

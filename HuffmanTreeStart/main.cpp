@@ -1,15 +1,17 @@
 #include "HuffmanTree.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
-	char input[NAMESIZE], output[NAMESIZE];
-	//printf("Input file:");
-	//scanf("%s", input);
-	printf("Output file:");
-	scanf("%s", output);
-	//EnCode(input);
-	//system("pause");
-	DeCode(output);
-	system("pause");
+	const char *opt;
+	const char *str;
+	opt = argv[1];
+	str = argv[2];
+	if (argc > 0)
+	{
+		if (strcmp(opt, "-e") == 0)
+			EnCode(str);
+		else if (strcmp(opt, "-d") == 0)
+			DeCode(str);
+	}
 	return 0;
 }

@@ -3,6 +3,7 @@
 #include<stdio.h>
 #include<malloc.h>
 #include<stdlib.h>
+#include<string.h>
 
 #define NAMESIZE 500
 #define INIT1 50000
@@ -21,6 +22,9 @@ void StrCopy(char *str, const char *c);
 void WeightSelect(HuffmanTree T, int n, int &l, int &r);
 void HuffmanCoding(HuffmanTree &HT, HuffmanCode &HC, int *w, int n);
 void HuffmanCodeOutput(HuffmanCode C, int* s, int n);
-void ReSync(HuffmanTree &T, char *s, int *x, int n, long long int &m);
 void EnCode(const char *s);
-void DeCode(const char *s);
+
+void NextByte(int a, char *b);
+void NextByte_2(int a, char *c);
+void Output(HuffmanTree &T, FILE *pr, int n, char *output);
+void DeCode(const char*s);

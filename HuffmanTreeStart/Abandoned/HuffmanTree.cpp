@@ -182,10 +182,10 @@ void EnCode(const char *s)
 		fwrite(&((HT + i)->lchild), 2, 1, pw);
 		fwrite(&((HT + i)->rchild), 2, 1, pw);
 	}
-	FILE *prw = fopen(s, "ab");
-	fseek(prw, 0, SEEK_END);
-	fwrite("a", 1, 1, prw);
-	fclose(prw);
+	//FILE *prw = fopen(s, "ab");
+	//fseek(prw, 0, SEEK_END);
+	//fwrite("a", 1, 1, prw);
+	//fclose(prw);
 	pr = fopen(s, "rb");
 	a = fgetc(pr);
 	i = 0;

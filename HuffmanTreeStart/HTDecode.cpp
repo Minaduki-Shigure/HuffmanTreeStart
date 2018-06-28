@@ -33,18 +33,43 @@ void NextByte_2(int a, char *c)
 	c[i + 1] = '#';
 }
 
-void verify(FILE *pw)
+void verify(char *output)
 {
-	char cpr[47] = "////////Powered by MINADUKI Technologies 2018.";
-	char key[47];
-	while (fread(key, sizeof(key), 1, pw))
+	char cmd1[50] = "copy ";
+	const char cmd2[] = " buffer";
+	strcat(cmd1, output);
+	strcat(cmd1, cmd2);
+	char del[] = "del buffer";
+	system(cmd1);
+	FILE *fr = fopen("buffer", "rb");
+	FILE *fw = fopen(output, "wb");
+	char cpr[46] = "///////Powered by MINADUKI Technologies 2018.";
+	char key[46];
+	char buf;
+	while (1)
 	{
-		if (strcmp(key, cpr) == 0)
+		buf = fgetc(fr);
+		if (buf == 47)
 		{
-			fseek(pw, -47, SEEK_CUR);
-			fputc(EOF, pw);
+			printf("/ is found!\n");
+			fread(key, sizeof(key) - 1, 1, fr);
+			key[45] = '\0';
+			if (strcmp(key, cpr) == 0)
+			{
+				printf("Flag is found!\n");
+				fclose(fr);
+				fclose(fw);
+				system(del);
+				return;
+			}
 		}
+		fputc(buf, fw);
+		if (buf == EOF)
+			return;
 	}
+	fclose(fr);
+	fclose(fw);
+	system(del);
 	return;
 }
 
@@ -90,8 +115,8 @@ void Output(HuffmanTree &T, FILE *pr, int n, char *output)
 			s = c;
 		}
 	}
-	verify(pw);
 	fclose(pw);
+	verify(output);
 	return;
 }
 

@@ -13,5 +13,6 @@ int main(int argc, char *argv[])
 		else if (strcmp(opt, "-d") == 0)
 			DeCode(str);
 	}
+	system("pause");
 	return 0;
 }

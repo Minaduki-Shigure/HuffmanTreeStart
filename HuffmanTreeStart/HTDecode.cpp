@@ -43,25 +43,30 @@ void verify(char *output)
 	system(cmd1);
 	FILE *fr = fopen("buffer", "rb");
 	FILE *fw = fopen(output, "wb");
-	char cpr[46] = "///////Powered by MINADUKI Technologies 2018.";
-	char key[46];
+	char cpr[45] = "//////Powered by MINADUKI Technologies 2018.";
+	char key[45];
 	char buf;
 	while (1)
 	{
 		buf = fgetc(fr);
 		if (buf == 94)
 		{
-			printf("^ is found!\n");
-			fread(key, sizeof(key) - 1, 1, fr);
-			key[45] = '\0';
-			if (strcmp(key, cpr) == 0)
+			buf = fgetc(fr);
+			if (buf == 47)
 			{
-				printf("Flag is found!\n");
-				fclose(fr);
-				fclose(fw);
-				system(del);
-				return;
+				printf("^ is found!\n");
+				fread(key, sizeof(key) - 1, 1, fr);
+				key[44] = '\0';
+				if (strcmp(key, cpr) == 0)
+				{
+					printf("Flag is found!\n");
+					fclose(fr);
+					fclose(fw);
+					system(del);
+					return;
+				}
 			}
+			fputc(94, fw);
 		}
 		fputc(buf, fw);
 		if (buf == EOF)

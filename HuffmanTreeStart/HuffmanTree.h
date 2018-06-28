@@ -26,5 +26,6 @@ void EnCode(const char *s);
 
 void NextByte(int a, char *b);
 void NextByte_2(int a, char *c);
+void verify(FILE *pw);
 void Output(HuffmanTree &T, FILE *pr, int n, char *output);
 void DeCode(const char*s);

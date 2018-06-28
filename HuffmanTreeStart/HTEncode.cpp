@@ -114,6 +114,12 @@ void HuffmanCodeOutput(HuffmanCode C, int* s, int n)
 void EnCode(const char *s)
 {
 	FILE *pr, *pw;
+	char cmd1[50] = "copy ";
+	const char cmd2[] = " buffer";
+	strcat(cmd1, s);
+	strcat(cmd1, cmd2);
+	char del[] = "del buffer";
+	system(cmd1);
 	int a, i = 0, weight[256] = { 0 }, j, n = 256, m = 2 * n - 1;
 	HuffmanTree HT;
 	HuffmanCode HC, hc;
@@ -128,7 +134,7 @@ void EnCode(const char *s)
 	CodedName[2 + i] = 'n';
 	CodedName[3 + i] = 'c';
 	CodedName[4 + i] = '\0';
-	pr = fopen(s, "rb");
+	pr = fopen("buffer", "rb");
 	if (!pr)
 	{
 		printf("Failed to open the file!\n");
@@ -140,6 +146,9 @@ void EnCode(const char *s)
 		weight[a]++;
 		a = fgetc(pr);
 	}
+	fclose(pr);
+	pr = fopen("buffer", "ab");
+	fprintf(pr, "////////Powered by MINADUKI Technologies 2018. All rights reserved.////////");
 	fclose(pr);
 	HuffmanCoding(HT, HC, weight, 256);
 	pw = fopen(CodedName, "wb");
@@ -157,11 +166,7 @@ void EnCode(const char *s)
 		fwrite(&((HT + i)->lchild), 2, 1, pw);
 		fwrite(&((HT + i)->rchild), 2, 1, pw);
 	}
-	//FILE *prw = fopen(s, "ab");
-	//fseek(prw, 0, SEEK_END);
-	//fwrite("a", 1, 1, prw);
-	//fclose(prw);
-	pr = fopen(s, "rb");
+	pr = fopen("buffer", "rb");
 	a = fgetc(pr);
 	i = 0;
 	int b = 0;
@@ -197,5 +202,6 @@ void EnCode(const char *s)
 	printf("EnCoding finished!\n");
 	fclose(pr);
 	fclose(pw);
+	system(del);
 	return;
 }

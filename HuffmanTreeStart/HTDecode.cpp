@@ -32,20 +32,22 @@ void NextByte_2(int a, char *c)
 	c[i] = '#';
 	c[i + 1] = '#';
 }
-/*
-void NextByte_2(int a, char *c)
+
+void verify(FILE *pw)
 {
-	char b[8];
-	int i = 0;
-	for (i = 0; i < 8; i++)
-		if (a) { b[7 - i] = 48 + a % 2; a = a / 2; }
-		else break;
-		for (int k = 0; k < i; k++)
-			c[k] = b[8 - i + k];
-		//	for(;i<7;i++)aa[8*j-8+i]='0';
-		c[i] = '#'; c[i + 1] = '#';
+	char cpr[47] = "////////Powered by MINADUKI Technologies 2018.";
+	char key[47];
+	while (fread(key, sizeof(key), 1, pw))
+	{
+		if (strcmp(key, cpr) == 0)
+		{
+			fseek(pw, -47, SEEK_CUR);
+			fputc(EOF, pw);
+		}
+	}
+	return;
 }
-*/
+
 void Output(HuffmanTree &T, FILE *pr, int n, char *output)
 {
 	char c[9], *s;
@@ -88,6 +90,7 @@ void Output(HuffmanTree &T, FILE *pr, int n, char *output)
 			s = c;
 		}
 	}
+	verify(pw);
 	fclose(pw);
 	return;
 }
@@ -156,4 +159,5 @@ void DeCode(const char*s)
 	Output(HT, pr, n, output);
 	fclose(pr);
 	printf("Finished£¡\n");
+	return;
 }

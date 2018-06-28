@@ -148,7 +148,7 @@ void EnCode(const char *s)
 	}
 	fclose(pr);
 	pr = fopen("buffer", "ab");
-	fprintf(pr, "////////Powered by MINADUKI Technologies 2018. All rights reserved.////////");
+	fprintf(pr, "^///////Powered by MINADUKI Technologies 2018. All rights reserved.////////");
 	fclose(pr);
 	HuffmanCoding(HT, HC, weight, 256);
 	pw = fopen(CodedName, "wb");

@@ -49,9 +49,9 @@ void verify(char *output)
 	while (1)
 	{
 		buf = fgetc(fr);
-		if (buf == 47)
+		if (buf == 94)
 		{
-			printf("/ is found!\n");
+			printf("^ is found!\n");
 			fread(key, sizeof(key) - 1, 1, fr);
 			key[45] = '\0';
 			if (strcmp(key, cpr) == 0)
